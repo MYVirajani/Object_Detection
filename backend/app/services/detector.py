@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # Load YOLO model once
-model = YOLO("app/models/yolo.pt")
+model = YOLO("app/models/yolov8n.pt")
 
 def detect_objects(image_bytes: bytes):
     # Convert bytes to OpenCV image
