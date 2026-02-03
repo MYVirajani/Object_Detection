@@ -1,15 +1,11 @@
-# app/routes/detect.py
-from fastapi import APIRouter, File, UploadFile
-from PIL import Image
+from fastapi import APIRouter, UploadFile, File
 from app.services.detector import detect_objects
-import io
+from app.schemas.response import DetectionResponse
 
 router = APIRouter()
 
-@router.post("/detect")
+@router.post("/detect", response_model=DetectionResponse)
 async def detect(file: UploadFile = File(...)):
     image_bytes = await file.read()
-    image = Image.open(io.BytesIO(image_bytes))
-    results = detect_objects(image)
-
-    return {"objects": results}
+    objects = detect_objects(image_bytes)
+    return {"objects": objects}
