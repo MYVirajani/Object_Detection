@@ -2,18 +2,17 @@ from ultralytics import YOLO
 import cv2
 import numpy as np
 
-# Load YOLO model once
 model = YOLO("app/models/yolov8n.pt")
 
 def detect_objects(image_bytes: bytes):
-    # Convert bytes to OpenCV image
+
     np_img = np.frombuffer(image_bytes, np.uint8)
     image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
 
-    # Run inference
-    results = model(image)
+    results = model(image, conf=0.6, iou=0.5)
 
     detections = []
+    confidences = []
 
     for r in results:
         for box in r.boxes:
@@ -22,10 +21,25 @@ def detect_objects(image_bytes: bytes):
             class_id = int(box.cls[0])
             label = model.names[class_id]
 
+            width = x2 - x1
+            height = y2 - y1
+
             detections.append({
                 "label": label,
                 "confidence": round(confidence, 2),
-                "box": [x1, y1, x2, y2]
+                "x": x1,
+                "y": y1,
+                "width": width,
+                "height": height
             })
 
-    return detections
+            confidences.append(confidence)
+
+    count = len(detections)
+    avg_conf = round(sum(confidences) / count, 2) if count > 0 else 0.0
+
+    return {
+        "count": count,
+        "avg_conf": avg_conf,
+        "detections": detections
+    }

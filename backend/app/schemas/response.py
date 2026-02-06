@@ -4,7 +4,12 @@ from typing import List
 class Detection(BaseModel):
     label: str
     confidence: float
-    box: List[int]  # [x1, y1, x2, y2]
+    x: int
+    y: int
+    width: int
+    height: int
 
 class DetectionResponse(BaseModel):
-    objects: List[Detection]
+    count: int
+    avg_conf: float
+    detections: List[Detection]

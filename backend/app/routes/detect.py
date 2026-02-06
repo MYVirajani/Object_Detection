@@ -7,5 +7,5 @@ router = APIRouter()
 @router.post("/detect", response_model=DetectionResponse)
 async def detect(file: UploadFile = File(...)):
     image_bytes = await file.read()
-    objects = detect_objects(image_bytes)
-    return {"objects": objects}
+    return detect_objects(image_bytes)
+
