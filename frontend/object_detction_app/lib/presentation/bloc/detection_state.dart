@@ -1,3 +1,4 @@
+import '../../data/models/detection_response_model.dart';
 import '../../domain/entities/detected_object.dart';
 
 abstract class DetectionState {}
@@ -7,8 +8,8 @@ class DetectionInitial extends DetectionState {}
 class DetectionLoading extends DetectionState {}
 
 class DetectionLoaded extends DetectionState {
-  final List<DetectedObject> objects;
-  DetectionLoaded(this.objects);
+  final DetectionResponseModel response;
+  DetectionLoaded(this.response);
 }
 
 class DetectionError extends DetectionState {

@@ -57,19 +57,19 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
                 return const CircularProgressIndicator();
               }
               if (state is DetectionLoaded) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: state.objects.length,
-                    itemBuilder: (context, index) {
-                      final obj = state.objects[index];
-                      return ListTile(
-                        title: Text("  object label: ${obj.label}"),
-                        subtitle: Text("Confidence: ${obj.confidence}"),
-                      );
-                    },
-                  ),
+                final response = state.response;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Label: ${response.detections.isNotEmpty ? response.detections[0].label : 'N/A'}"),
+                    SizedBox(height: 5),
+                    Text("Total Objects: ${response.count}"),
+                    SizedBox(height: 5),
+                    Text("Average Confidence: ${response.avgConf.toStringAsFixed(2)}"),
+                  ],
                 );
               }
+
               if (state is DetectionError) {
                 return Text(state.message);
               }

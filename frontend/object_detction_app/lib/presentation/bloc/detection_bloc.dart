@@ -10,11 +10,12 @@ class DetectionBloc extends Bloc<DetectionEvent, DetectionState> {
     on<DetectImageEvent>((event, emit) async {
       emit(DetectionLoading());
       try {
-        final objects = await detectObjects(event.image);
-        emit(DetectionLoaded(objects));
+        final response = await detectObjects(event.image);
+        emit(DetectionLoaded(response));
       } catch (e) {
         emit(DetectionError(e.toString()));
       }
     });
   }
 }
+

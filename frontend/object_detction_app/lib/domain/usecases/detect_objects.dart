@@ -1,13 +1,14 @@
-import 'dart:io';
-import '../entities/detected_object.dart';
+import '../../data/models/detection_response_model.dart';
 import '../repositories/detection_repository.dart';
+import 'dart:io';
 
 class DetectObjects {
   final DetectionRepository repository;
 
   DetectObjects(this.repository);
 
-  Future<List<DetectedObject>> call(File image) {
-    return repository.detectObjects(image);
+  Future<DetectionResponseModel> call(File image) {
+    return repository.detectObjects(image); //
   }
 }
+
