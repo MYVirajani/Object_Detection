@@ -63,7 +63,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
                     itemBuilder: (context, index) {
                       final obj = state.objects[index];
                       return ListTile(
-                        title: Text(obj.label),
+                        title: Text("  object label: ${obj.label}"),
                         subtitle: Text("Confidence: ${obj.confidence}"),
                       );
                     },

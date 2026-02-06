@@ -13,7 +13,7 @@ class MLKitDataSource {
     });
 
     final response = await dio.post(
-      'http://10.0.2.2:8000/detect',
+      'http://10.0.2.2:8000/api/detect',
       data: formData,
     );
 

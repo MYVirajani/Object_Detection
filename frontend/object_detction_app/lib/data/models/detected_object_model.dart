@@ -12,12 +12,12 @@ class DetectedObjectModel extends DetectedObject {
 
   factory DetectedObjectModel.fromJson(Map<String, dynamic> json) {
     return DetectedObjectModel(
-      label: json['label'],
-      confidence: json['confidence'].toDouble(),
-      x: json['x'].toDouble(),
-      y: json['y'].toDouble(),
-      width: json['width'].toDouble(),
-      height: json['height'].toDouble(),
+      label: json['label'] ?? '',
+      confidence: (json['confidence'] as num?)?.toDouble() ?? 0.0,
+      x: (json['x'] as num?)?.toDouble() ?? 0.0,
+      y: (json['y'] as num?)?.toDouble() ?? 0.0,
+      width: (json['width'] as num?)?.toDouble() ?? 0.0,
+      height: (json['height'] as num?)?.toDouble() ?? 0.0,
     );
   }
 }
