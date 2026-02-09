@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 import numpy as np
 
-model = YOLO("app/models/yolov8s.pt")
+model = YOLO("app/models/yolov8m.pt")
 
 def detect_objects(image_bytes: bytes):
 
