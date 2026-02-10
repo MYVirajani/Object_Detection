@@ -1,4 +1,4 @@
-# 🧠 Smart Object Detection App
+# Object Detection App
 
 A full-stack AI-powered mobile application that performs object
 detection using **YOLOv8** and displays results in a **Flutter** mobile
